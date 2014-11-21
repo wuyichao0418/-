@@ -36,6 +36,9 @@ class UsersController extends BaseController {
 	}
 
 	public function postSignin() {
+		if (Input::get('logintype') == 0) {
+			Auth::attempt()
+		}
 		if ( Auth::attempt(array('customer_email'=>Input::get('email'), 'password'=>Input::get('password'))) ) {
 			return Redirect::to('/')->with('message', 'Thanks for signin')
 				->with('customer_detail', User::all());
@@ -54,6 +57,29 @@ class UsersController extends BaseController {
 	}
 
 	public function postCreateShop() {
-		
+		$validator = Validator::make(Input::all(), ShopUser::$rules);
+
+		if ($validator->passes()) {
+			$shop_user = new ShopUser;
+			$shop_user->shop_name 		= Input::get('shop_name');
+			$shop_user->shop_email 		= Input::get('shop_email');
+			$shop_user->shop_password 	= Hash::make(Input::get('shop_password'));
+			$shop_user->shop_phone 		= Input::get('shop_phone');
+			$shop_user->payment_method 	= 'PayPal';
+			$shop_user->shop_suburb 	= Input::get('shop_suburb');
+			$shop_user->shop_address 	= Input::get('shop_address');
+			$shop_user->shop_state	 	= Input::get('shop_state');
+			$shop_user->shop_postcode 	= Input::get('shop_postcode');
+			$shop_user->shop_hour 		= Input::get('shop_hour');
+			$shop_user->save();
+
+			return Redirect::to('account/signin')
+				->with('message', '账号创建');
+		}
+
+		return Redirect::to('account/openshop')
+			->with('message', '请填写合法信息')
+			->withErrors($validator)
+			->withInput(); // 错误返回的时候默认form里面有User原来填写的数据
 	}
 }

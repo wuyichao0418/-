@@ -21,7 +21,7 @@
 						</div>
 					@endif
 
-					{{ Form::open(array('url'=>'account/createShop', 'method'=>'post')) }}
+					{{ Form::open(array('url'=>'account/create-shop', 'method'=>'post')) }}
 						<legend>账号注册</legend>
 						<div class="col-sm-5">
 							<p>

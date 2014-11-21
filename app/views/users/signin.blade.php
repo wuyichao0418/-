@@ -24,8 +24,6 @@
 
 				</div>
 				<div class="col-sm-5">
-					
-
 
 					{{ Form::open(array('url'=>'account/signin')) }}
 					<legend>账号登录</legend>
@@ -44,9 +42,9 @@
 					<br>
 					<p>
 						<!-- {{ Form::label('logintype', '*登陆方式')}} -->
-						{{ Form::radio('0', '用户登陆', true) }}&nbsp;用户登陆
+						{{ Form::radio('logintype', '0') }}&nbsp;用户登陆
 						&nbsp;&nbsp;&nbsp;
-						{{ Form::radio('1', '商家登陆') }}&nbsp;商家登陆
+						{{ Form::radio('logintype', '1') }}&nbsp;商家登陆
 					</p>
 					<br>
 					@if ( Session::has('message') )
@@ -57,9 +55,8 @@
 					@endif
 					{{ Form::submit('登录账户', array('class'=>'btn btn-primary btn-success btn-lg btn-block'))}}
 					{{ Form::close() }}
-				
-				</div>
 
+				</div>
 			</div>
 		</div>
 	</div>
