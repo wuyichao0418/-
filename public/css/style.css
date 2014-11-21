@@ -1,0 +1,92 @@
+body {
+	background: #eee;
+}
+
+.first_part {
+	background: #0f9d58;
+}
+
+.xiaoming-nav {
+	margin-bottom: 0px;
+	background: #0f9d58;
+	border:none;
+}
+
+.xiaoming-nav > .navbar-header > .navbar-brand {
+	color: white ;
+	padding:15px 15px 15px 0px;
+}
+
+.xiaoming-nav > .navbar-collapse > .nav > li > a {
+	color: white;
+}
+
+.searchbox {
+	box-shadow: none;
+	border:none !important;
+}
+
+.fav_heading {
+	border-bottom: 1px #eee solid;
+	padding-bottom: 5px;
+}
+
+.mid-content {
+	background: white;
+}
+
+.hot_res, .hot_sale {
+	color: black;
+	padding: 5px 20px;
+}
+
+.hot_res:hover, .hot_sale:hover {
+	text-decoration: none;
+	color: inital;
+}
+
+.main-rest > .col-sm-12 > h4 {
+	border-bottom: 3px #0f9d58 solid;
+	padding-bottom: 3px;
+}
+
+.active {
+	color:white;
+	background: #0f9d58;
+}
+
+table > tbody > tr > td > p {
+	line-height: 0.5;
+}
+
+.rest_display > tbody > tr {
+	margin-top: 10px;
+}
+
+.open {
+	background: #0D7B45 !important;
+}
+
+.dropdown-menu {
+	background: #0f9d58;
+}
+
+.dropdown-menu > li > a {
+	color: white;
+}
+
+.sec_part {
+	margin-top:30px;
+}
+
+.login_part {
+	padding:30px;
+}
+
+.form_sepr {
+	border-left: 1px solid #eee;
+}
+
+input[type=dropdown] {
+	background:#0f9d58;
+}
