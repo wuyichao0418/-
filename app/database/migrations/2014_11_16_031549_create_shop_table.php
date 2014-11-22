@@ -26,6 +26,7 @@ class CreateShopTable extends Migration {
 			$table->string('shop_state'); // NSW
 			$table->string('shop_postcode');
 			$table->boolean('shop_hour')->default(0);
+			$table->rememberToken();
 			$table->timestamps();
 		});
 	}

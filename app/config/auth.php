@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'eloquent',
+	// 'driver' => 'eloquent',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'model' => 'User',
+	// 'model' => 'User',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -41,7 +41,22 @@ return array(
 	|
 	*/
 
-	'table' => 'users',
+	// 'table' => 'users',
+
+
+	// Start By Rocky
+	'multi' => array(
+        'customer' => array(
+            'driver' => 'eloquent',
+            'model' => 'User',
+            'table' => 'customer'
+        ),
+        'shopuser' => array(
+            'driver' => 'eloquent',
+            'model'	=>	'ShopUser',
+            'table' => 'shop'
+        )
+    ),
 
 	/*
 	|--------------------------------------------------------------------------

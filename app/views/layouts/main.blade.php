@@ -40,14 +40,21 @@
 				            <li><a href="javascript:void(0)">反馈留言</a></li>
 				            <li class="dropdown">
 
-					            @if (Auth::check()) 
+
+					            @if (Auth::customer()->check()) 
 				            	 	<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                	&nbsp;{{ Auth::user()->username }}<b class="caret"></b></a>
+                                	&nbsp;{{ Auth::customer()->user()->username }}<b class="caret"></b></a>
 					                <ul class="dropdown-menu">
-					                	<li>{{ HTML::link('account/signout', '登出')}}</li>
+					                	<li>{{ HTML::link('account/user-signout', '登出')}}</li>
+                                	</ul>
+					            @elseif (Auth::shopuser()->check())
+					            	<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                                	&nbsp;{{ Auth::shopuser()->user()->shop_name }}<b class="caret"></b></a>
+					                <ul class="dropdown-menu">
+					                	<li>{{ HTML::link('account/signout', '管理菜单')}}</li>
+					                	<li>{{ HTML::link('account/shop-signout', '登出')}}</li>
                                 	</ul>
 					            @else
-
 				            	 	<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">账号管理<b class="caret"></b></a>
 					                <ul class="dropdown-menu">
 					                	<li>{{ HTML::link('account/signin', '登录') }}</li>
@@ -77,6 +84,7 @@
 @yield('signin')
 @yield('shopview')
 @yield('shopsignup')
+@yield('shoprofile')
 
 {{ HTML::script('js/jquery-1.10.2.min.js') }}
 {{ HTML::script('js/bootstrap.js') }}

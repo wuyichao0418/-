@@ -33,7 +33,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'telephone' 			=>	'required|between:8,15|unique:customer'
 	);
 
-		/**
+	/**
 	 * Get the unique identifier for the user.
 	 *
 	 * @return mixed

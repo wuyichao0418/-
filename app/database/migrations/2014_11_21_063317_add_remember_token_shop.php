@@ -12,9 +12,7 @@ class AddRememberTokenShop extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('shop', function($table){
-			$table->rememberToken();
-		});
+		
 	}
 
 	/**

@@ -36,19 +36,36 @@ class UsersController extends BaseController {
 	}
 
 	public function postSignin() {
-		if (Input::get('logintype') == 0) {
-			Auth::attempt()
-		}
-		if ( Auth::attempt(array('customer_email'=>Input::get('email'), 'password'=>Input::get('password'))) ) {
-			return Redirect::to('/')->with('message', 'Thanks for signin')
-				->with('customer_detail', User::all());
+		$validator = Validator::make( 
+			array('logintype' => Input::get('logintype')),
+			array('logintype' => array('required')) 
+		);
+
+		if ($validator->passes()) {
+			if (Input::get('logintype') == 0) {
+				if ( Auth::customer()->attempt(array('customer_email'=>Input::get('email'), 'password'=>Input::get('password'))) ) {
+					return Redirect::to('/')->with('message', 'Thanks for signin')
+						->with('customer_detail', User::all());
+				} else {
+					return Redirect::to('account/signin')->with('message', 'Your email/password combo was incorrect');
+				}
+			} else {
+				if ( Auth::shopuser()->attempt(array('shop_email'=>Input::get('email'), 'password'=>Input::get('password'))) ) {
+					return Redirect::to('account/shop-profile')->with('message', 'Thanks for signin')
+						->with('customer_detail', ShopUser::all());
+				} else {
+					return Redirect::to('account/signin')->with('message', 'Your email/password combo was incorrect');
+				}
+			}
 		}
 
-		return Redirect::to('account/signin')->with('message', 'Your email/password combo was incorrect');
+		return Redirect::to('account/signin')
+				->with('message', '请选择登录类型')
+				->withErrors($validator);
 	}
 
-	public function getSignout() {
-		Auth::logout();
+	public function getUserSignout() {
+		Auth::customer()->logout();
 		return Redirect::to('account/signin')->with('message', 'User Logout');
 	}
 
@@ -81,5 +98,14 @@ class UsersController extends BaseController {
 			->with('message', '请填写合法信息')
 			->withErrors($validator)
 			->withInput(); // 错误返回的时候默认form里面有User原来填写的数据
+	}
+
+	public function getShopSignout() {
+		Auth::customer()->logout();
+		return Redirect::to('account/signin')->with('message', 'User Logout');
+	}
+
+	public function getShopProfile() {
+		return View::make('users.shoprofile');
 	}
 }
