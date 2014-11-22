@@ -69,6 +69,11 @@ class UsersController extends BaseController {
 		return Redirect::to('account/signin')->with('message', 'User Logout');
 	}
 
+	/**
+	 * 
+	 *	商店管理开始
+	 *  
+	 */
 	public function getOpenshop() {
 		return View::make('users.shopsignup');
 	}
@@ -88,6 +93,17 @@ class UsersController extends BaseController {
 			$shop_user->shop_state	 	= Input::get('shop_state');
 			$shop_user->shop_postcode 	= Input::get('shop_postcode');
 			$shop_user->shop_hour 		= Input::get('shop_hour');
+
+			$image = Input::file('shop_image');  // 处理图片 得到上传图片
+			// $filename = date('Y-m-d-H:i:s')."-".$image->getClientOriginalName(); // 排除同名字图片
+			$filename = time()."-".$image->getClientOriginalName(); // 排除同名字图片
+			
+			// $path = public_path('img/products/'.$filename);
+			$path = public_path('img/'.Input::get('shop_name').'/' . $filename);
+			Image::make($image->getRealPath())->resize(468, 249)->save($path);
+
+			$shop_user->shop_image = 'img/'.Input::get('shop_name').'/'.$filename; // 显示图片读取db url
+
 			$shop_user->save();
 
 			return Redirect::to('account/signin')
@@ -100,12 +116,31 @@ class UsersController extends BaseController {
 			->withInput(); // 错误返回的时候默认form里面有User原来填写的数据
 	}
 
+	/**
+	 * 
+	 *	商店登出
+	 *  
+	 */
 	public function getShopSignout() {
-		Auth::customer()->logout();
+		Auth::shopuser()->logout();
 		return Redirect::to('account/signin')->with('message', 'User Logout');
 	}
 
+	/**
+	 * 
+	 *	商店个人资料页面
+	 *  
+	 */
 	public function getShopProfile() {
-		return View::make('users.shoprofile');
+		return View::make('users.shoprofile')
+			->with('shopusers', ShopUser::find(Auth::shopuser()->user()->id));
+	}
+
+	public function postProfileUpdate() {
+		$validator = Validator::make(
+			Input::all(), 
+			array());
+
+
 	}
 }

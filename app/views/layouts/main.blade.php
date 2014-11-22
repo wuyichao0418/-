@@ -7,7 +7,7 @@
 	{{ HTML::style('css/bootstrap.css') }}
 	{{ HTML::style('css/font-awesome.min.css') }}
 	{{ HTML::style('css/style.css') }}
-
+	<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/css/bootstrap-select.min.css">
 </head>
 <body>
 
@@ -51,6 +51,7 @@
 					            	<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
                                 	&nbsp;{{ Auth::shopuser()->user()->shop_name }}<b class="caret"></b></a>
 					                <ul class="dropdown-menu">
+					                	<li>{{ HTML::link('account/shop-profile', '个人资料')}}</li>
 					                	<li>{{ HTML::link('account/signout', '管理菜单')}}</li>
 					                	<li>{{ HTML::link('account/shop-signout', '登出')}}</li>
                                 	</ul>
@@ -80,15 +81,16 @@
 	</div>
 @endif
 
+@yield('shopview')
 @yield('signup')
 @yield('signin')
-@yield('shopview')
 @yield('shopsignup')
 @yield('shoprofile')
 
 {{ HTML::script('js/jquery-1.10.2.min.js') }}
 {{ HTML::script('js/bootstrap.js') }}
-
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"></script>
+{{ HTML::script('js/custom.js') }}
 
 </body>
 </html>

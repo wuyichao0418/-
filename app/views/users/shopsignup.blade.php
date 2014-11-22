@@ -65,15 +65,26 @@
 								{{ Form::label('shop_postcode', '*邮编')}}
 								{{ Form::text('shop_postcode', '', array('class'=>'form-control', 'placeholder' => '')) }}
 							</p>
-
+							&nbsp;
 							<p>
 								{{ Form::label('shop_state', '*州')}}
-								{{ Form::select('shop_state', array('0'=>'Select','n'=>'New South Wales', 'q'=>'Queensland') ,array('class'=>'btn btn-success')) }}
+								{{ Form::select('shop_state', array('0'=>'Select','n'=>'New South Wales', 'q'=>'Queensland') ,array('class'=>'selectpicker')) }}
 							</p>
 
 							<p>
 								{{ Form::label('shop_hour', '*营业时间')}}
 								{{ Form::text('shop_hour', '', array('class'=>'form-control', 'placeholder' => '')) }}
+							</p>
+
+						</div>
+						<div class="col-sm-11">
+							<p>
+								{{ Form::label('shop_image', '餐厅 Logo') }}
+								{{ Form::file('shop_image') }}
+							</p>
+							<p>
+								{{ Form::label('shop_description', '*餐馆描述')}}
+								{{ Form::textarea('shop_description', '', array('class'=>'form-control', 'placeholder' => '')) }}
 							</p>
 
 

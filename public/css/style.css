@@ -90,3 +90,8 @@ table > tbody > tr > td > p {
 input[type=dropdown] {
 	background:#0f9d58;
 }
+
+.profile_content {
+	padding: 30px;
+	background: white;
+}
